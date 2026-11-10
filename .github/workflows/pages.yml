@@ -1,0 +1,33 @@
+name: Publicar portafolio en aidartx.com
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Descargar la versión publicada
+        uses: actions/checkout@v5
+        with:
+          repository: jftorrescamara/jftorrescamara.github.io
+          ref: 68018afdc88e2d43020d254c51800a7d16221a5d
+          path: site
+          persist-credentials: false
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Preparar los archivos del sitio
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - name: Publicar
+        uses: actions/deploy-pages@v4

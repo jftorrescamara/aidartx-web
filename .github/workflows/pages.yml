@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v5
         with:
           repository: jftorrescamara/jftorrescamara.github.io
-          ref: 30b8979aa5bcd8d34c19e41cec0e6d01399f17c2
+          ref: f3fd0d60ab55e0737268390697e284f2b903b84d
           path: site
           persist-credentials: false
       - name: Configurar GitHub Pages
